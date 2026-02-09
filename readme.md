@@ -42,7 +42,7 @@ root/
 - MongoDB
 - Broker MQTT (Se ha utilizado EMQX en este caso)
 
-### 🔐 Variables de entorno
+## 🔐 Variables de entorno
 Tanto en /api como en /front-end Encontrará un ejemplo de las variables
 utilizadas en el archivo .env.example. En base a ellas, cree un archivo .env
 para /api y otro para /front-end antes de ejecutar tanto la API como la interfaz de usuario.
