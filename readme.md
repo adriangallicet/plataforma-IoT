@@ -7,7 +7,7 @@ El objetivo principal del proyecto es demostrar buenas prácticas de desarrollo 
  de una aplicación real, más que ofrecer un producto final.
 La aplicación simula un entorno productivo donde usuarios autenticados pueden administrar
  dispositivos, locaciones y comunicarse en tiempo real mediante MQTT.
----
+
 
 ## 🧱 Arquitectura
 
@@ -23,7 +23,7 @@ root/
 - **Auth**: JWT almacenado en cookie httpOnly
 - **Realtime**: MQTT (WebSocket)
 
----
+
 
 ## 🧩 ¿Qué hace la aplicación?
 
@@ -34,7 +34,7 @@ root/
 - 🔌 Gestión básica de dispositivos y locaciones
 - 🚀 Frontend y API desacoplados
 
----
+
 
 ## ⚙️ Requisitos
 
@@ -42,7 +42,7 @@ root/
 - MongoDB
 - Broker MQTT (Se ha utilizado EMQX en este caso)
 
----
+
 
 ## 🔧 Backend (API)
 
@@ -80,7 +80,7 @@ API disponible en:
 http://localhost:3001/api
 ```
 
----
+
 
 ## 🎨 Frontend (Nuxt 3)
 
@@ -123,14 +123,14 @@ npm run dev
 npm run dev
 ```
 
----
+
 
 Frontend disponible en:
 ```
 http://localhost:3000
 ```
 
----
+
 
 ## 🔐 Autenticación
 
@@ -146,7 +146,7 @@ http://localhost:3000
 - Patrón más cercano a entornos productivos reales
 - Evitar problemas de hydration comúnmente conocidos de nuxt al usar localStorage
 
----
+
 
 ## 📡 MQTT
 
@@ -165,7 +165,7 @@ La conexión MQTT se gestiona de forma centralizada para evitar múltiples conex
 
 - Cliente MQTT controlado desde Pinia Store
 
----
+
 
 ## 📄 Scripts útiles
 
@@ -182,7 +182,7 @@ npm run build
 npm run preview
 ```
 
----
+
 
 ## 🚀 Deploy (Notas)
 
@@ -191,14 +191,14 @@ npm run preview
 - Se espera base de datos mongo activa en mongodb://localhost:27017/
 - Las cookies requieren withCredentials: true
 
----
+
 
 ## 📌 Estado del proyecto
 
 ✅ Funcional
 ✅ Listo para GitHub
 
----
+
 🚀 Posibles Mejoras
 - Roles de usuario
 - Alertas automáticas
@@ -208,10 +208,10 @@ npm run preview
  (fuera del caso de uso del proyecto)
 - Dockerización
 - Deploy en producción
----
+
 ## 👤 Autor
 
 **Adrián Gallicet**
 
----
+
 
