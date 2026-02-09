@@ -1,0 +1,29 @@
+{
+  "name": "api-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js --exec babel-node",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.0.0",
+    "mongoose-unique-validator": "^4.0.1",
+    "morgan": "^1.10.0",
+    "mqtt": "^5.10.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "nodemon": "^3.1.7"
+  }
+}

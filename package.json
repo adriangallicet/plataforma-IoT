@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {
+    "dev:front-end": "cd front-end && npm run dev",
+    "dev:api": "cd api && npm run dev"
+  }
+}
