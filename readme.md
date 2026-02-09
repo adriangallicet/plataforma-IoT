@@ -42,6 +42,23 @@ root/
 - MongoDB
 - Broker MQTT (Se ha utilizado EMQX en este caso)
 
+### 🔐 Variables de entorno
+Tanto en /api como en /front-end Encontrará un ejemplo de las variables
+utilizadas en el archivo .env.example. En base a ellas, cree un archivo .env
+para /api y otro para /front-end antes de ejecutar tanto la API como la interfaz de usuario.
+
+Por ejemplo
+Backend (api/.env):
+
+```env
+NUXT_PUBLIC_API_BASE_URL=http://127.0.0.1:3001
+NUXT_PUBLIC_MQTT_URL=ws://localhost:8083/mqtt
+NUXT_PUBLIC_MQTT_USERNAME=superuser
+NUXT_PUBLIC_MQTT_PASSWORD=superuser
+```
+
+> Ver `.env.example`
+
 
 
 ## 🔧 Backend (API)
@@ -57,20 +74,9 @@ cd api
 npm install
 ```
 
-### 🔐 Variables de entorno
-Crear archivo `.env`:
 
-```env
-PORT=3001
-MONGO_URI=mongodb://user:password@localhost:27017/admin
-JWT_SECRET=super_secret
-JWT_EXPIRES_IN=7d
-NODE_ENV=development
-```
-
-> Ver `.env.example`
-
-### ▶️ Ejecutar
+### ▶️ Ejecución
+En /api
 ```bash
 npm run dev
 ```
@@ -94,36 +100,11 @@ http://localhost:3001/api
 cd front-end
 npm install
 ```
-
-### 🔐 Variables de entorno
-Tanto en /api como en /front-end Encontrará un ejemplo de las variables
-utilizadas en el archivo .env.example. En base a ellas, cree un archivo .env
-para /api y otro para /front-end antes de ejecutar tanto la API como la interfaz de usuario.
-
-Por ejemplo
-Backend (api/.env):
-
-```env
-NUXT_PUBLIC_API_BASE_URL=http://127.0.0.1:3001
-NUXT_PUBLIC_MQTT_URL=ws://localhost:8083/mqtt
-NUXT_PUBLIC_MQTT_USERNAME=superuser
-NUXT_PUBLIC_MQTT_PASSWORD=superuser
-```
-
-> Ver `.env.example`
-
-### ▶️ Ejecución en desarrollo
-### Backend
+### ▶️ Ejecución
+En /front-end
 ```bash
 npm run dev
 ```
-
-### Frontend
-```bash
-npm run dev
-```
-
-
 
 Frontend disponible en:
 ```
