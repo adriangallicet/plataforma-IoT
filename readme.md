@@ -113,6 +113,36 @@ No es necesario crear .env manualmente cuando se usa Docker.
 
 Las variables públicas de Nuxt (NUXT_PUBLIC_*) se inyectan en tiempo de build.
 
+## 🚀 Arquitectura Docker
+                         ┌──────────────┐
+                         │   Usuario    │
+                         └──────┬───────┘
+                                │ Interacción UI
+                                ▼
+                   ┌────────────────────────┐
+                   │   Frontend (Nuxt SPA)  │
+                   │ - Cliente REST         │
+                   │ - Cliente MQTT (WS)    │
+                   └──────▲───────────▲─────┘
+                          │           │
+                          │           │
+                     HTTP │           │ WebSocket MQTT
+                          ▼           ▼
+                ┌────────────────┐   ┌──────────────┐
+                │   API Node.js  │   │  EMQX Broker │
+                └──────▲─────────┘   └──────────────┘
+                       │                    
+                       ▼                   
+                ┌──────────────┐     
+                │   MongoDB    │     
+                └──────────────┘     
+                                     
+
+- Frontend compilado en build
+- Servido como SPA estática con Nginx
+- API independiente
+- Servicios desacoplados
+
 ## ⚙️ Ejecución Manual (Modo Desarrollo)
 
 Si se desea ejecutar sin Docker:
@@ -227,43 +257,20 @@ npm run dev
 npm run build
 npm run preview
 ```
-## 🚀 Arquitectura Docker
-                         ┌──────────────┐
-                         │   Usuario    │
-                         └──────┬───────┘
-                                │ Interacción UI
-                                ▼
-                   ┌────────────────────────┐
-                   │   Frontend (Nuxt SPA)  │
-                   │ - Cliente REST         │
-                   │ - Cliente MQTT (WS)    │
-                   └──────▲───────────▲─────┘
-                          │           │
-                          │           │
-                     HTTP │           │ WebSocket MQTT
-                          ▼           ▼
-                ┌────────────────┐   ┌──────────────┐
-                │   API Node.js  │   │  EMQX Broker │
-                └──────▲─────────┘   └──────────────┘
-                       │                    
-                       ▼                   
-                ┌──────────────┐     
-                │   MongoDB    │     
-                └──────────────┘     
-                                     
 
-- Frontend compilado en build
-- Servido como SPA estática con Nginx
-- API independiente
-- Servicios desacoplados
 
 ## 📌 Estado del proyecto
 
 ✅ Funcional
+
 ✅ Arquitectura desacoplada
+
 ✅ Autenticación segura con cookies httpOnly
+
 ✅ Comunicación MQTT operativa
+
 ✅ Dockerizado (API + Frontend + Mongo + EMQX)
+
 ✅ Listo para GitHub
 
 ## 🔮 Posibles mejoras futuras
