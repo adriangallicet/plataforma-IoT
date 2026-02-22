@@ -261,17 +261,12 @@ npm run preview
 
 ## 📌 Estado del proyecto
 
-✅ Funcional
-
-✅ Arquitectura desacoplada
-
-✅ Autenticación segura con cookies httpOnly
-
-✅ Comunicación MQTT operativa
-
-✅ Dockerizado (API + Frontend + Mongo + EMQX)
-
-✅ Listo para GitHub
+✅ Funcional  
+✅ Arquitectura desacoplada  
+✅ Autenticación segura con cookies httpOnly  
+✅ Comunicación MQTT operativa  
+✅ Dockerizado (API + Frontend + Mongo + EMQX)  
+✅ Listo para GitHub  
 
 ## 🔮 Posibles mejoras futuras
 
