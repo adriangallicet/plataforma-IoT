@@ -26,8 +26,12 @@ app.use(express.json());
 app.use(express.urlencoded({ //permite que en los GET pasemos datos por url, se comprendida por express y la transforme en objeto JS
     extended: true
 }));
+
+//Cross-Origin Resource Sharing
+//mecanismo de seguridad del navegador que controla qué sitios pueden hacer requests a otros sitios.
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: true,
+  //origin: process.env.FRONT_URL, mas restrictivo, solo dicho origin(localhost)
   credentials: true // ✅ necesario para cookies
 }))
 //express config
@@ -43,7 +47,7 @@ app.use("/api", webhooksRouter);
  //ordenamiento de rutas y endpoints en archivos separados
 
 //listener API
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`API server listening on port ${PORT}`.cyan);
 });
 

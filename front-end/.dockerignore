@@ -1,0 +1,21 @@
+# Sin .dockerignore:
+
+# Docker copia TODO el directorio api/ al contexto de build.
+
+# Eso:
+
+# Hace el build más lento
+
+# Hace la imagen más pesada
+
+# Puede romper dependencias
+
+node_modules
+dist
+.output
+.git
+.gitignore
+Dockerfile
+.dockerignore
+.env
+.env.*

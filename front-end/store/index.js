@@ -77,8 +77,6 @@ export const useMqttStore = defineStore('mqtt', {
       const store = useMainStore()
       const config = useRuntimeConfig()
 
-       console.log("en userData hay", store.userData)
-
         if (!store.userData) { //sin userData no hacemos nada, necesitamos el id para la suscripcion de topic
         console.warn('[MQTT] userData no disponible, abortando conexión')
         return
@@ -90,7 +88,6 @@ export const useMqttStore = defineStore('mqtt', {
 
        const userId = store.userData._id
 
-       console.log("en userId hay", userId)
 
 this.client = mqtt.connect(config.public.mqttUrl, {
   clean: true,

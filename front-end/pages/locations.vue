@@ -51,6 +51,10 @@ mounted(){
                 description: 'La acción se realizó exitosamente.',
                 variant: 'success'
             })
+
+            //limpiamos el formulario si se crea
+            this.locationName = ""
+            this.locationDescription = ""
             this.getLocations()
         }
         } catch (error) {

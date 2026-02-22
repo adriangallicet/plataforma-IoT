@@ -21,6 +21,14 @@ const token = req.cookies?.auth_token //se lee token desde cookies
         
     next(); //paso el req de nuevo. Por ej: a la funcion devices.js para que siga la ejecucion del get a /device
   } catch (err) {
+
+    //  Limpiamos cookie inválida // es para que, si se modifica el token o se invalida por tiempo, el navegador no lo siga enviando
+    res.clearCookie('auth_token', {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+      path: '/'
+    })
     return res.status(401).json({
       status: 'error'
     });

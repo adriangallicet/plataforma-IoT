@@ -1,0 +1,142 @@
+#🔹 docker-compose.yml
+
+#Es el orquestador de contenedores.
+
+#Define:
+ #-Qué servicios existen
+ #-Qué imagen usan (o cómo construirla)
+ #-Qué puertos exponer
+ #-Qué redes usar
+ #-Qué depende de qué
+ #-Variables, volúmenes, etc.
+
+#-Es como el arquitecto que decide:
+ #-Cuántas casas hay
+ #-Cómo se conectan
+ #-Qué dirección tiene cada una
+
+#Frontend → Imagen propia (multi-stage con nginx)
+#API      → Imagen propia (Node)
+#Mongo    → Imagen oficial
+#MQTT     → Imagen oficial
+
+volumes:
+#EMQX - persistencia
+  vol-emqx-data:
+    name: foo-emqx-data
+  vol-emqx-etc:
+    name: foo-emqx-etc
+  vol-emqx-log:
+    name: foo-emqx-log
+#MONGO - persistencia
+  vol-mongo-data:
+    name: foo-mongo-data
+
+
+services:
+  api:
+    build: ./api
+    container_name: api
+    env_file:
+      - ./api/.env.docker
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+      - emqx
+    
+    restart: always #cuando inicia la plataforma docker, inicia este contenedor como servicio(daemon) en segundo plano
+
+  frontend:
+  #ejemplo de lo que realiza docker compose internamente:
+   #1.Va a la carpeta ./front-end
+   #2.Busca un archivo llamado Dockerfile
+   #3.Ejecuta docker build usando ese Dockerfile
+   #4.Crea una imagen
+   #5.Luego crea un contenedor basado en esa imagen
+
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+      # ⚠️ Nuxt está configurado con preset 'static'
+      # Las variables NUXT_PUBLIC_* se inyectan en tiempo de BUILD, no en runtime.
+      # Por eso deben pasarse como build args y no mediante env_file.
+      # de manera basica, me estaban quedando las variables de entorno vacias
+      args:
+        NUXT_PUBLIC_API_BASE_URL: http://localhost:3001
+        NUXT_PUBLIC_MQTT_URL: ws://localhost:8083/mqtt
+        NUXT_PUBLIC_MQTT_USERNAME: superuser
+        NUXT_PUBLIC_MQTT_PASSWORD: superuser
+    container_name: frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+    restart: always #cuando inicia la plataforma docker, inicia este contenedor como servicio(daemon) en segundo plano
+
+
+  mongo: #etiqueta para identificar servicio
+    container_name: mongo
+    image: mongo:latest #nombre de imagen y version, de no estar instalada, en base a el la descarga de dockerhub
+    restart: always #cuando inicia la plataforma docker, inicia este contenedor como servicio(daemon) en segundo plano
+    environment:
+      TZ: "America/Argentina/Buenos_Aires" #fecha y hora
+      MONGO_INITDB_ROOT_USERNAME: "devuser"
+      MONGO_INITDB_ROOT_PASSWORD: "devpassword"
+      
+    volumes: #persistencia de datos, por si se destruye el container // cada creador de una imagen da explicitas instrucciones de como lograr esto
+      - vol-mongo-data:/data/db
+    ports:
+      - 27017:27017 #puerto host-container
+      
+
+  emqx: #etiqueta para identificar servicio
+    container_name: emqx
+    image: emqx/emqx:latest #nombre de imagen y version, de no estar instalada, en base a el la descarga de dockerhub
+    restart: always #cuando inicia la plataforma docker, inicia este contenedor como servicio(daemon) en segundo plano
+    ports:
+      - 18083:18083 #Dashboard web
+      - 18084:18084
+      - 1883:1883
+      - 8883:8883
+      - 8083:8083 #Conexion websocket
+      - 8084:8084 #Conexion SSL
+      - 8085:8081
+
+    volumes: #persistencia de datos, por si se destruye el container // cada creador de una imagen da explicitas instrucciones de como lograr esto
+      - vol-emqx-data:/opt/emqx/data
+      - vol-emqx-etc:/opt/emqx/etc
+      - vol-emqx-log:/opt/emqx/log
+    
+    links: #forma de linkear los servicios
+      - mongo
+    
+
+    environment: #variables de entorno que brindan los creadores de la imagen para configurar determinados parametros
+
+      EMQX_NAME: tv-services #pide que se configure para que funcione la persistencia
+      EMQX_HOST: 127.0.0.1 #pide que este configure para que funcione la persistencia
+      TZ: "America/Argentina/Buenos_Aires" #fecha y hora
+      # EMQX_DASHBOARD__DEFAULT_USER__PASSWORD: "emqxdashpass"
+      # EMQX_LISTENERS__TCP__EXTERNAL__MAX_CONNECTIONS: 1000
+      EMQX_LISTENERS__TCP__DEFAULT__MAX_CONNECTIONS: 1000
+# listeners.tcp.default
+      EMQX_AUTH__ANONYMOUS__ALLOW: "false"
+      EMQX_ACL_NOMATCH: "deny"
+      EMQX_DASHBOARD__DEFAULT_USERNAME: admin
+      EMQX_DASHBOARD__DEFAULT_PASSWORD: 123321
+
+      
+
+
+
+
+
+
+
+
+ 
+
+
+  
