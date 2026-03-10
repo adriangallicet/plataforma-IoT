@@ -81,24 +81,156 @@ Incluye:
 - MongoDB
 - EMQX (Broker MQTT)
 
-### 📦 Requisitos
+### 🚀 Instalación y ejecución de la plataforma
 
-- Docker
-- Docker Compose
+#### Clonar el repositorio
 
-### ▶️ Levantar todo el stack
+Clonar el proyecto desde el repositorio:
 
-Desde la raíz del proyecto:
 ```bash
-docker-compose up --build
+git clone https://github.com/adriangallicet/plataforma-IoT.git
 ```
+
+Ingresar al directorio del proyecto:
+
+```bash
+cd plataforma-IoT
+```
+
+### 🐳 Instalación de Docker
+
+Para ejecutar la plataforma es necesario tener instalado **Docker** y **Docker Compose**.
+
+
+#### 🖥️ Windows
+
+En **Windows** la forma más sencilla es instalar **Docker Desktop**, que ya incluye Docker Engine y Docker Compose.
+
+##### 1. Descargar Docker Desktop
+
+Descargar desde el sitio oficial:
+
+https://www.docker.com/products/docker-desktop/
+
+##### 2. Instalar Docker Desktop
+
+Ejecutar el instalador y seguir los pasos. Durante la instalación se habilitará **WSL2** si aún no está configurado.
+
+##### 3. Reiniciar el sistema
+
+Luego de la instalación se recomienda reiniciar el equipo.
+
+##### 4. Verificar instalación
+
+Abrir una terminal (PowerShell, CMD o WSL) y ejecutar:
+
+```bash
+docker --version
+docker compose version
+```
+
+Si ambos comandos responden correctamente, Docker está listo para usarse.
+
+#### 🐧 Linux (Debian / Ubuntu / Parrot OS)
+
+Actualizar paquetes:
+
+```bash
+sudo apt update
+```
+
+Instalar Docker:
+
+```bash
+sudo apt install docker.io -y
+```
+
+Habilitar el servicio:
+
+```bash
+sudo systemctl enable docker
+sudo systemctl start docker
+```
+
+Instalar Docker Compose:
+
+```bash
+sudo apt install docker-compose-plugin -y
+```
+
+Verificar instalación:
+
+```bash
+docker --version
+docker compose version
+```
+
+Opcionalmente, agregar el usuario al grupo docker para evitar usar `sudo`:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+Luego cerrar sesión y volver a iniciarla.
+
+
+### ▶️ Ejecución del proyecto
+
+Una vez instalado Docker y clonado el repositorio, ejecutar los servicios definidos en el archivo `docker-compose.yml`.
+
+Construir las imágenes del proyecto:
+
+```bash
+docker compose build
+```
+
+Levantar los contenedores:
+
+```bash
+docker compose up -d
+```
+
+
+## 🔍 Verificar contenedores en ejecución
+
+Para verificar que los servicios estén funcionando correctamente:
+
+```bash
+docker ps
+```
+
+También se pueden consultar los contenedores del proyecto con:
+
+```bash
+docker compose ps
+```
+
+
+### 🛑 Detener la plataforma
+
+Para detener todos los servicios:
+
+```bash
+docker compose down
+```
+
+## 📄 Notas
+
+* La primera ejecución puede tardar algunos minutos ya que Docker descargará las imágenes necesarias.
+* Los servicios definidos en `docker-compose.yml` incluyen los componentes principales de la plataforma IoT: backend, frontend, broker MQTT y base de datos.
+* Si se realizan cambios en el código del proyecto, puede ser necesario reconstruir las imágenes:
+
+```bash
+docker compose up -d --build
+```
+
 ### 🌐 Servicios disponibles
 
 | Servicio       | URL                                                    |
 | -------------- | ------------------------------------------------------ |
 | Frontend       | [http://localhost:3000](http://localhost:3000)         |
 | API            | [http://localhost:3001/api](http://localhost:3001/api) |
-| EMQX Dashboard | [http://localhost:18083](http://localhost:18083)       |
+| EMQX Dashboard | [http://localhost:18083](http://localhost:18083) user: admin pass: 123321      |
 | MongoDB        | mongodb://localhost:27017                              |
 
 ### 🔐 Variables de entorno en Docker
