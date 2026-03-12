@@ -23,15 +23,9 @@ Esta sección incluye:
 El objetivo principal es demostrar buenas prácticas de desarrollo, organización y arquitectura de una aplicación real, más que ofrecer un producto final comercial.
 
 La aplicación simula un entorno productivo donde usuarios autenticados pueden administrar dispositivos, locaciones y comunicarse en tiempo real mediante MQTT.
-```
-## 🧱 Arquitectura del Proyecto
-root/
-├── api/         # Backend (Node.js + Express + MongoDB)
-├── front-end/   # Frontend (Nuxt 3 SPA + Pinia + Tailwind)
-├── docker-compose.yml
-└── package.json
-```
 
+## 🧱 Arquitectura del Proyecto
+  <img src="arquitecturaGral.jpg" alt="Diagrama" style="max-width: 250px; width: 80%;" >
 ## 🔹 Tecnologías utilizadas
 ### Frontend
 
