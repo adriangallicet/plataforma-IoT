@@ -3,11 +3,9 @@
 Proyecto para gestión y monitoreo de dispositivos IoT.
 Forma parte de un sistema prototipo desarrollado como tesis de grado en Ingeniería en Telecomunicaciones. 
 
-El documento completo del trabajo, donde se detalla el diseño conceptual y la arquitectura general del sistema se encuentra disponible en:
-
-🔗 https://github.com/adriangallicet/tesis-plataforma-iot
-
-Se recomienda su lectura para comprender el enfoque integral del proyecto y su marco teórico.
+ <p>Este repositorio forma parte del proyecto **Plataforma IoT**, desarrollado como trabajo de tesis de Ingeniería en Telecomunicaciones.
+El repositorio principal del proyecto funciona como punto de acceso a la documentación general y a los distintos componentes del sistema:<br>
+🔗 https://github.com/adriangallicet/tesis-plataforma-iot</p> 
 
 
 Esta sección incluye:
