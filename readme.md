@@ -25,7 +25,8 @@ El objetivo principal es demostrar buenas prácticas de desarrollo, organizació
 La aplicación simula un entorno productivo donde usuarios autenticados pueden administrar dispositivos, locaciones y comunicarse en tiempo real mediante MQTT.
 
 ## 🧱 Arquitectura del Proyecto
-  <img src="arquitecturaGral.jpg" alt="Diagrama" style="max-width: 250px; width: 80%;" >
+  <img src="arquitecturaGral.jpg" alt="Diagrama" style="max-width: 250px; width: 40%;" >
+  
 ## 🔹 Tecnologías utilizadas
 ### Frontend
 
